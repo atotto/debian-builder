@@ -1,0 +1,8 @@
+FROM debian:buster-slim
+
+RUN apt-get update && \
+    apt-get install -y \
+    git curl wget unzip \
+    crossbuild-essential-armhf && \
+    dpkg --add-architecture armhf && \
+    rm -rf /var/lib/apt/lists/*
