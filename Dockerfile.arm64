@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
-    crossbuild-essential-armhf && \
-    dpkg --add-architecture armhf && \
+    crossbuild-essential-arm64 && \
+    dpkg --add-architecture arm64 && \
     rm -rf /var/lib/apt/lists/*
