@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 
 RUN apt-get update && apt-get install -y \
-    git curl wget unzip \
+    git curl wget unzip && \
     rm -rf /var/lib/apt/lists/*
 
 RUN wget --content-disposition https://packagecloud.io/ato/deb/packages/debian/buster/go-bin-deb_0.0.19+gx6_amd64.deb/download.deb -O dpkg.deb && dpkg -i dpkg.deb && rm -f dpkg.deb

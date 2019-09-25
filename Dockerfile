@@ -9,6 +9,5 @@ RUN wget --content-disposition https://packagecloud.io/ato/deb/packages/debian/b
 RUN curl -sL "https://storage.googleapis.com/golang/$(curl -s https://golang.org/VERSION?m=text).linux-amd64.tar.gz" | tar xz -C /usr/local && ln -sf /usr/local/go/bin/go /usr/local/bin/go
 
 RUN apt-get update && apt-get install -y \
-    crossbuild-essential-arm64 && \
-    dpkg --add-architecture arm64 && \
+    build-essential && \
     rm -rf /var/lib/apt/lists/*
