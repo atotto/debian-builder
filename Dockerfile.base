@@ -1,0 +1,10 @@
+FROM debian:buster-slim
+
+RUN apt-get update && apt-get install -y \
+    git curl wget unzip \
+    build-essential && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN wget --content-disposition https://packagecloud.io/ato/deb/packages/debian/buster/go-bin-deb_0.0.19+gx6_amd64.deb/download.deb -O dpkg.deb && dpkg -i dpkg.deb && rm -f dpkg.deb
+RUN wget --content-disposition https://packagecloud.io/ato/deb/packages/debian/buster/packagecloud_0.1.0_amd64.deb/download.deb -O dpkg.deb && dpkg -i dpkg.deb && rm -f dpkg.deb
+RUN curl -sL "https://storage.googleapis.com/golang/$(curl -s https://golang.org/VERSION?m=text).linux-amd64.tar.gz" | tar xz -C /usr/local && ln -sf /usr/local/go/bin/go /usr/local/bin/go
