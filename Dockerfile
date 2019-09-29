@@ -1,2 +1,2 @@
-FROM debian:buster-slim
+FROM atotto/debian-builder:base
 
