@@ -1,12 +1,12 @@
 # debian-builder
 
-app builder on docker
+golang and debian package build container
 
 https://cloud.docker.com/repository/docker/atotto/debian-builder
 
 - go-bin-deb packagecloud
-- golang
-- git curl wget unzip
+- Go staticcheck
+- git curl wget unzip shfmt
 - build-essential
 
 | docker tag | description |
