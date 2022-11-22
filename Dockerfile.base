@@ -1,11 +1,11 @@
 FROM debian:bullseye-slim
 
 RUN apt-get update && apt-get install -y \
-    git curl wget unzip \
+    git curl wget unzip jq \
     build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 RUN wget --content-disposition https://packagecloud.io/ato/deb/packages/debian/buster/go-bin-deb_0.0.19+gx6_amd64.deb/download.deb -O dpkg.deb && dpkg -i dpkg.deb && rm -f dpkg.deb
 RUN curl -sL "https://dl.google.com/go/$(curl -s https://go.dev/VERSION?m=text).linux-amd64.tar.gz" | tar xz -C /usr/local && ln -sf /usr/local/go/bin/go /usr/local/bin/go
-RUN curl -sL "https://github.com/dominikh/go-tools/releases/download/2021.1.1/staticcheck_linux_amd64.tar.gz" | tar xz staticcheck --strip=1 && mv staticcheck /usr/local/bin/
+RUN curl -sL "https://github.com/dominikh/go-tools/releases/download/$(curl -s https://api.github.com/repos/dominikh/go-tools/releases/latest | jq '.tag_name' -r)/staticcheck_linux_amd64.tar.gz" | tar xz staticcheck --strip=1 && mv staticcheck /usr/local/bin/
 RUN wget -O /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.3.1/shfmt_v3.3.1_linux_amd64 && chmod +x /usr/local/bin/shfmt
