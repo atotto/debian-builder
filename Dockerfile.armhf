@@ -1,6 +1,0 @@
-FROM atotto/debian-builder:base
-
-RUN apt-get update && apt-get install -y \
-    crossbuild-essential-armhf && \
-    dpkg --add-architecture armhf && \
-    rm -rf /var/lib/apt/lists/*

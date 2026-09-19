@@ -5,6 +5,11 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run:
+          name: setup buildx
+          command: |
+            docker run --rm --privileged tonistiigi/binfmt --install all
+            docker buildx create --use
       - run: make build
       - when:
           condition:

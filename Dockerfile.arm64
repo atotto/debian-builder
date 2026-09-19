@@ -1,6 +1,0 @@
-FROM atotto/debian-builder:base
-
-RUN apt-get update && apt-get install -y \
-    crossbuild-essential-arm64 && \
-    dpkg --add-architecture arm64 && \
-    rm -rf /var/lib/apt/lists/*

@@ -9,8 +9,6 @@ https://cloud.docker.com/repository/docker/atotto/debian-builder
 - git curl wget unzip shfmt
 - build-essential
 
-| docker tag | description |
-| --- | --- |
-| atotto/debian-builder:latest | compiler |
-| atotto/debian-builder:armhf | bundle armhf cross compiler |
-| atotto/debian-builder:arm64 | bundle arm64 cross compiler |
+| docker tag                    | description               |
+|--------------------------------|----------------------------|
+| atotto/debian-builder:latest   | compiler (amd64 / arm64)  |

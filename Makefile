@@ -1,11 +1,12 @@
 
+# one-time local setup: docker buildx create --use
+
 build:
-	docker build -f Dockerfile.base -t atotto/debian-builder:base .
-	docker build -f Dockerfile -t atotto/debian-builder:latest .
-	docker build -f Dockerfile.armhf -t atotto/debian-builder:armhf .
-	docker build -f Dockerfile.arm64 -t atotto/debian-builder:arm64 .
+	docker buildx build -f Dockerfile.base --platform linux/amd64 -t atotto/debian-builder:base-amd64 --load .
+	docker buildx build -f Dockerfile.base --platform linux/arm64 -t atotto/debian-builder:base-arm64 --load .
+	docker buildx build -f Dockerfile --platform linux/amd64 -t atotto/debian-builder:amd64 --load .
+	docker buildx build -f Dockerfile --platform linux/arm64 -t atotto/debian-builder:arm64 --load .
 
 deploy:
-	docker push atotto/debian-builder:latest
-	docker push atotto/debian-builder:armhf
-	docker push atotto/debian-builder:arm64
+	docker buildx build -f Dockerfile.base --platform linux/amd64,linux/arm64 -t atotto/debian-builder:base --push .
+	docker buildx build -f Dockerfile --platform linux/amd64,linux/arm64 -t atotto/debian-builder:latest --push .
